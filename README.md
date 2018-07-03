@@ -29,31 +29,21 @@ $ python manage.py runserver
 
 ## Project Structure
 
+We will be using a functional structure to modularize our application. Inside the `main` package, create three more packages namely: `controller`, `service` and `model`. The `model` package will contain all of our database models while the `service` package will contain all the business logic of our application and finally the `controller` package will contain all our application endpoints. The tree structure should now look as follows:
+
 ```{bash}
-api
-|- chat/
-   |- __init__.py       
-   |- api.py            /* Methods for all the routes*/
-   |- conversation.py   /* All the functions for Watson Conversation API */
-   |- liveperson.py     /* All the dunctions for the LivePerson API   */
-   |- mongo_models.py   /* MongoDB models and functions */
-   |- redis_models.py   /* Redis database model and functions */
-   |- schema.py         /* Schema definition for main chat object */
-   |- templates.py      /* Functions to return defined objects */
-   |- views.py          /* Definition of routes using Method View Dispatching */
-|- widget/
-   |- __init__.py       
-   |- views.py          /* Definition of routes using Method View Dispatching */
-|- .env                 /* File with the credentials for local testing */
-|- app.py               /* Fires up the Flask server with the configurations */
-|- application.py       /* Flask API initialization */
-|- config.py            /* All connections credentials and setup for IBM Cloud */
-|- manage.py            /* Main file to initialize server */
-|- manifest.yml         /* File for uploading the API to IBM Cloud */
-|- Procfile             /* Command to run python server */
-|- README.md            /* Readme file */
-|- requirements.txt     /* All requirements for the application */
-|- runtime.txt          /* Python version */
-|- setup.py             /* Main setup config */
-|- validator.py         /* Config for custom error handler */
+.
+├── app
+│   ├── __init__.py
+│   ├── main
+│   │   ├── controller
+│   │   │   └── __init__.py
+│   │   ├── __init__.py
+│   │   ├── model
+│   │   │   └── __init__.py
+│   │   └── service
+│   │       └── __init__.py
+│   └── test
+│       └── __init__.py
+└── requirements.txt
 ```

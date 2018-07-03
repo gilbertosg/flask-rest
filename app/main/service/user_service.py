@@ -1,17 +1,18 @@
 import uuid
 import datetime
-from app.main import db
+from app.main import db, flask_bcrypt
 from app.main.model.user import User
 
 
 def save_new_user(data):
-    user = User.query.filter_by(email=data['email']).first()
+    user = User.objects.filter(email=data['email']).first()
     if not user:
+        password = flask_bcrypt.generate_password_hash(data['password']).decode('utf-8')
         new_user = User(
             public_id=str(uuid.uuid4()),
             email=data['email'],
             username=data['username'],
-            password=data['password'],
+            password=password,
             registered_on=datetime.datetime.utcnow()
         )
         new_user.save()
@@ -29,8 +30,8 @@ def save_new_user(data):
 
 
 def get_all_users():
-    return User.query.all()
+    return User.objects.first()
 
 
 def get_a_user(public_id):
-    return User.query.filter_by(public_id=public_id).first()
+    return User.objects.filter(public_id=public_id).first()

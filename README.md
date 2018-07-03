@@ -24,8 +24,11 @@ $ pip3 install -r requirements.txt
 
 Run application with:
 ```
-$ python manage.py runserver
+$ python manage.py run
 ```
+
+Open the following url on your browser to view swagger documentation
+http://127.0.0.1:5000/
 
 ## Project Structure
 
